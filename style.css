@@ -17,6 +17,7 @@ header {
   display: flex;
   justify-content: space-between;
   margin: 10px;
+  color: black;
 }
 
 body {
@@ -46,7 +47,7 @@ body {
 }
 
 .button {
-    background-color: lightskyblue;
+    background-color: lightgreen;
     border-color: black;
     border-width: 1px;
     border-radius: 8px;
@@ -64,4 +65,13 @@ body {
 
 .hide {
     display: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: lightgreen;
 }
