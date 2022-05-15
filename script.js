@@ -156,6 +156,9 @@ function highScoreLeaderboard() {
 }
 
 function showLeaderboard() {
+    quizQuestions.classList.add("hide");
+    correct.classList.add("hide");
+    incorrect.classList.add("hide");
     highScoreSubmission.classList.add("hide");
     viewHighScores.classList.remove("hide");
     start.classList.add("hide");
