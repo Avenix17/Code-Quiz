@@ -1,10 +1,14 @@
 const start = document.getElementById("start");
 const quizQuestions = document.getElementById("quiz-questions");
-var questions = document.getElementById("questions");
-var answerButtons = document.getElementById("answer-buttons");
-var highScoreSubmission = document.getElementById("enter-high-scores")
+const questions = document.getElementById("questions");
+const answerButtons = document.getElementById("answer-buttons");
 const correct = document.getElementById("correct");
 const incorrect = document.getElementById("incorrect");
+var highScoreSubmission = document.getElementById("high-score-submission");
+var viewHighScores = document.getElementById("view-high-scores");
+
+var initialInput = document.getElementById("Initials");
+var timeScore = document.getElementById("time-remaining");
 
 var randomizedQuestions;
 var currentQuestion;
@@ -13,11 +17,17 @@ var sec = 90;
 var countDown;
 var options;
 var question;
+var score;
 
 const a1 = document.getElementById('a1');
 const a2 = document.getElementById('a2');
 const a3 = document.getElementById('a3');
 const a4 = document.getElementById('a4');
+const submitButton = document.getElementById("submit-button");
+
+const endHighScores = JSON.parse(localStorage.getItem("endHighScores")) || [];
+const maxHighScores = 10;
+const highScoresList = document.getElementById("ld-high-scores");
 
 var createdQuestions = [
     {   question: "You end every line in CSS with what...",
@@ -79,8 +89,10 @@ function startQuiz() {
 
 function nextQuestion() {
     if (currentQuestion >= createdQuestions.length) {
-        // TODO: go to high score submission
-        alert("submit highscore");
+        correct.classList.add('hide');
+        incorrect.classList.add("hide");
+        clearInterval(countDown);
+        submitHighScore();
     } else {
         showQuestion(randomizedQuestions[currentQuestion]);
     }
@@ -107,7 +119,6 @@ function showQuestion(question) {
 function chooseAnswer(event) {
     correct.classList.add('hide');
     incorrect.classList.add("hide");
-
     if (event.target.value == "true") {
         correct.classList.remove("hide");
         currentQuestion++;
@@ -120,10 +131,39 @@ function chooseAnswer(event) {
     }
 }
 
+function submitHighScore() {
+    quizQuestions.classList.add("hide");
+    highScoreSubmission.classList.remove("hide");
+    timeScore.innerHTML = sec;
+    submitButton.addEventListener("click", highScoreLeaderboard);
+}
+
+function highScoreLeaderboard() {
+    highScoreSubmission.classList.add("hide");
+    viewHighScores.classList.remove("hide");
+    const score = {
+        score: sec,
+        name: initialInput.value
+    };
+    endHighScores.push(score);
+    endHighScores.sort( (a,b) => {
+        return b.score - a.score;
+    })
+    endHighScores.splice(maxHighScores);
+    localStorage.setItem("endHighScores", JSON.stringify(endHighScores));
+    highScoresList.innerHTML = endHighScores
+    .map( score => {
+        return `<li class="high-score">${score.name} - ${score.score}<li>`;
+    })
+    .join("");
+}
+
+
+
 function timer() {
     document.getElementById("time-left").innerHTML = sec;
     sec--;
-    if (sec <= 0) {
+    if (sec <= -1) {
         clearInterval(countDown);
         alert("You lose!");
     }
