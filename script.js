@@ -187,7 +187,7 @@ function timer() {
     if (sec <= -1) {
         clearInterval(countDown);
         alert("You lose!");
-        highScoreLeaderboard();
+        showLeaderboard();
     }
 }
 
