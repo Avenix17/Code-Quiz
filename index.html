@@ -30,14 +30,17 @@
                     <button id="start" class="button">Start Quiz</button>
                 </div>
 
-                <div class="enter-highscores hide">
+                <div class="enter-highscores hide" id="high-score-submission">
+                    <p>All Done!</p>
+                    <p>Your final score is: <span id="time-remaining"></span>!</p>
                     <label for="Initials">Initials:</label>
                     <input type="text" id="Initials" name="Initials">
-                    <input type="submit" class="button">
+                    <input type="submit" class="button" id="submit-button">
                 </div>
 
-                <div class="view-high-scores hide">
+                <div class="hide" id="view-high-scores">
                     <header>High Score Leaderboard</header>
+                    <ul class="leaderboard" id="ld-high-scores"></ul>
                 </div>
             </div>
             <div id="feedback">
