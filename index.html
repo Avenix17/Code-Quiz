@@ -10,18 +10,18 @@
     <body>
         <header class="misc">
             <a id="leader-board" href="#">View High Scores</a>
-            <div id="timer">Time: <span id="time-left"></span></div>
+            <div id="timer">Time: <span id="time-left">90</span></div>
         </header>
         <div id="container">
             <div class="box">
                 <div id="quiz-questions" class="hide">
                     <div id="questions">Question</div>
 
-                    <div class="answer-buttons">
-                        <button class="button">Answer 1</button>
-                        <button class="button">Answer 2</button>
-                        <button class="button">Answer 3</button>
-                        <button class="button">Answer 4</button>
+                    <div id="answer-buttons">
+                        <button class="button" id="a1">Answer 1</button>
+                        <button class="button" id="a2">Answer 2</button>
+                        <button class="button" id="a3">Answer 3</button>
+                        <button class="button" id="a4">Answer 4</button>
                     </div>
 
                 </div>
@@ -34,7 +34,10 @@
                     <label for="Initials">Initials:</label>
                     <input type="text" id="Initials" name="Initials">
                     <input type="submit" class="button">
-                    <!-- <button id="submit-score" class="hide button">Submit</button> -->
+                </div>
+
+                <div class="view-high-scores hide">
+                    <header>High Score Leaderboard</header>
                 </div>
             </div>
         </div>
