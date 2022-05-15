@@ -3,12 +3,14 @@ const quizQuestions = document.getElementById("quiz-questions");
 var questions = document.getElementById("questions");
 var answerButtons = document.getElementById("answer-buttons");
 var highScoreSubmission = document.getElementById("enter-high-scores")
+const correct = document.getElementById("correct");
+const incorrect = document.getElementById("incorrect");
 
 var randomizedQuestions;
 var currentQuestion;
 
 var sec = 90;
-var time;
+var countDown;
 var options;
 var question;
 
@@ -63,7 +65,7 @@ var createdQuestions = [
 start.addEventListener("click", startQuiz);
 
 function startQuiz() {
-    time = setInterval(timer, 1000);
+    countDown = setInterval(timer, 1000);
     start.classList.add("hide");
     randomizedQuestions = createdQuestions.sort(() => Math.random() > .5 ? 1 : -1);
     currentQuestion = 0;
@@ -76,7 +78,12 @@ function startQuiz() {
 }
 
 function nextQuestion() {
-    showQuestion(randomizedQuestions[currentQuestion]);
+    if (currentQuestion >= createdQuestions.length) {
+        // TODO: go to high score submission
+        alert("submit highscore");
+    } else {
+        showQuestion(randomizedQuestions[currentQuestion]);
+    }
 }
 
 function showQuestion(question) {
@@ -84,6 +91,7 @@ function showQuestion(question) {
 
     let options = createdQuestions[currentQuestion].options
     options.sort(() => Math.random() > .5 ? 1 : -1);
+
     a1.textContent = options[0].text;
     a2.textContent = options[1].text;
     a3.textContent = options[2].text;
@@ -97,22 +105,26 @@ function showQuestion(question) {
 }
 
 function chooseAnswer(event) {
-    if (event.target.value) {
-    // TODO: correct answer
-    // Correct! move to next question
-    } else {
-    // TODO: incorrect answer
-    // deduct 15 sec
-    // Wrong! move to next question
+    correct.classList.add('hide');
+    incorrect.classList.add("hide");
 
+    if (event.target.value == "true") {
+        correct.classList.remove("hide");
+        currentQuestion++;
+        nextQuestion();
+    } else {
+        sec = sec - 15;
+        incorrect.classList.remove("hide");
+        currentQuestion++;
+        nextQuestion();
     }
 }
 
 function timer() {
     document.getElementById("time-left").innerHTML = sec;
     sec--;
-    if (sec == -1) {
-        clearInterval(time);
+    if (sec <= 0) {
+        clearInterval(countDown);
         alert("You lose!");
     }
 }
