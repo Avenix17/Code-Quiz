@@ -82,3 +82,20 @@ a:hover {
     font-style: italic;
     font-size: larger;
 }
+
+#view-high-scores header {
+    justify-content: center;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+ul {
+    padding: 0px;
+}
+
+ul li{
+    justify-content: center;
+    align-items: center;;
+    list-style: none;
+    padding: 2px;
+}
