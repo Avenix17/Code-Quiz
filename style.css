@@ -76,3 +76,9 @@ a {
 a:hover {
     color: lightgreen;
 }
+
+#feedback {
+    opacity: 50%;
+    font-style: italic;
+    font-size: larger;
+}
