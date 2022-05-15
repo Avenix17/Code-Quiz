@@ -32,44 +32,44 @@ const maxHighScores = 10;
 const highScoresList = document.getElementById("ld-high-scores");
 
 var createdQuestions = [
-    {   question: "You end every line in CSS with what...",
+    {   question: "What is NOT a data type in JavaScript?",
         options: [
-            {text: "A semicolon", correct: true},
-            {text: "I dunno", correct: false},
-            {text: "Jeffrey Bezos", correct: false},
-            {text: "Nothing", correct: false},
+            {text: "Flex", correct: true},
+            {text: "Number", correct: false},
+            {text: "Boolean", correct: false},
+            {text: "String", correct: false},
         ]
     },
-    {   question: "Billy joe sally",
+    {   question: "What is NOT a way to define a variable?",
         options: [
-            {text: "cotton eye joe", correct: true},
-            {text: "billy jean is not my lover", correct: false},
-            {text: "sally mae", correct: false},
-            {text: "Hua?", correct: false},
+            {text: "name", correct: true},
+            {text: "let", correct: false},
+            {text: "var", correct: false},
+            {text: "const", correct: false},
         ]
     },
-    {   question: "Billy joe ",
+    {   question: "What variable scope can be accessed anywhere in code?",
         options: [
-            {text: "cotton eye joe", correct: true},
-            {text: "billy jean is not my lover", correct: false},
-            {text: "sally mae", correct: false},
-            {text: "Hua?", correct: false},
+            {text: "Global", correct: true},
+            {text: "Local", correct: false},
+            {text: "Function", correct: false},
+            {text: "International", correct: false},
         ]
     },
-    {   question: "Billy joe richy",
+    {   question: "What data type is a variable that has been declared, but not yet assigned a value?",
         options: [
-            {text: "cotton eye joe", correct: true},
-            {text: "billy jean is not my lover", correct: false},
-            {text: "sally mae", correct: false},
-            {text: "Hua?", correct: false},
+            {text: "Undefined", correct: true},
+            {text: "Boolean", correct: false},
+            {text: "Null", correct: false},
+            {text: "Object", correct: false},
         ]
     },
-    {   question: "Billy joe crazy",
+    {   question: "What is NOT a way to include JavaScript within a HTML file?",
         options: [
-            {text: "cotton eye joe", correct: true},
-            {text: "billy jean is not my lover", correct: false},
-            {text: "sally mae", correct: false},
-            {text: "Hua?", correct: false},
+            {text: "Extraterrestrial", correct: true},
+            {text: "Inline", correct: false},
+            {text: "Internal", correct: false},
+            {text: "External", correct: false},
         ]
     },
 ]
