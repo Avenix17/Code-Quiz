@@ -36,9 +36,10 @@ body {
     padding: 10px;
     box-shadow: 0 0 5px 1px;
     flex-direction: column;
+    text-align: center;
 }
 
-.answer-buttons {
+#answer-buttons {
     display: grid;
     grid-template-columns: repeat(2, auto);
     gap: 10px;
