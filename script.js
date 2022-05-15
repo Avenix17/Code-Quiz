@@ -4,9 +4,11 @@ const questions = document.getElementById("questions");
 const answerButtons = document.getElementById("answer-buttons");
 const correct = document.getElementById("correct");
 const incorrect = document.getElementById("incorrect");
+const linkLeaderboard = document.getElementById("leader-board");
+const home = document.getElementById("home");
+const clearScores = document.getElementById("clear");
 var highScoreSubmission = document.getElementById("high-score-submission");
 var viewHighScores = document.getElementById("view-high-scores");
-
 var initialInput = document.getElementById("Initials");
 var timeScore = document.getElementById("time-remaining");
 
@@ -73,6 +75,7 @@ var createdQuestions = [
 ]
 
 start.addEventListener("click", startQuiz);
+linkLeaderboard.addEventListener("click", showLeaderboard);
 
 function startQuiz() {
     countDown = setInterval(timer, 1000);
@@ -139,8 +142,6 @@ function submitHighScore() {
 }
 
 function highScoreLeaderboard() {
-    highScoreSubmission.classList.add("hide");
-    viewHighScores.classList.remove("hide");
     const score = {
         score: sec,
         name: initialInput.value
@@ -151,14 +152,34 @@ function highScoreLeaderboard() {
     })
     endHighScores.splice(maxHighScores);
     localStorage.setItem("endHighScores", JSON.stringify(endHighScores));
+    showLeaderboard();
+}
+
+function showLeaderboard() {
+    highScoreSubmission.classList.add("hide");
+    viewHighScores.classList.remove("hide");
+    start.classList.add("hide");
+    home.classList.remove("hide");
+    clearScores.classList.remove("hide");
+
     highScoresList.innerHTML = endHighScores
     .map( score => {
         return `<li class="high-score">${score.name} - ${score.score}<li>`;
     })
     .join("");
+
+    home.addEventListener("click", reloadPage);
+    clearScores.addEventListener("click", clearLeaderboard);
+    clearScores.addEventListener("click", reloadPage);
 }
 
+function reloadPage() {
+    location.reload();
+}
 
+function clearLeaderboard() {
+    localStorage.clear();
+}
 
 function timer() {
     document.getElementById("time-left").innerHTML = sec;
@@ -166,6 +187,7 @@ function timer() {
     if (sec <= -1) {
         clearInterval(countDown);
         alert("You lose!");
+        highScoreLeaderboard();
     }
 }
 
